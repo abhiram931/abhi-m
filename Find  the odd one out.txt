@@ -1,0 +1,67 @@
+n=int(input())
+
+s=[]
+
+pattern=[]
+
+for _ in range(n):
+
+ s.append(input().strip())
+
+def get_pat(st):
+
+ p=[]
+
+ for i in range(1,len(st)):
+
+ p.append(ord(st[i])-ord(st[i-1]))
+
+ return p
+
+for st in s:
+
+ pattern.append(get_pat(st))
+
+d={}
+
+for i in range(n):
+
+ t=tuple(pattern[i])
+
+ if t in d:
+
+ d[t].append(i)
+
+ else:
+
+ d[t]=[i]
+
+if len(d)==2:
+
+ for key,val in d.items():
+
+ if len(val)==1:
+
+ odd=val[0]
+
+ print(s[odd])
+
+ break
+
+else:
+
+ mx=0
+
+ od=0
+
+ for key,val in d.items():
+
+ if len(val)>mx:
+
+ mx=len(val)
+
+ else:
+
+ od=val[0]
+
+ print(s[od])
